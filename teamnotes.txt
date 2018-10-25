@@ -1,0 +1,32 @@
+1. Improve toy descriptions
+2. Display Menu
+	a. Add to cart
+	b. Remove from cart
+	c. Show price of item selected
+	d. Ask quantity desired for selected item
+	e. Display items in cart
+3. Checkout
+	A. Total/Receipt
+		a. subtotal
+		b. sales tax
+		c. grand total
+		d. items selected
+			quantity
+			price per item
+			price per item X quantity
+	
+	B. Payment Method
+		a. Cash
+			Amount received, make change
+		b. Credit Card
+			CC#, Exp date, CVV
+		
+
+
+
+
+
+
+Extras:
+	Coupons
+	Display items by price range or category
