@@ -3,5 +3,4 @@
 .project
 .classpath
 *.class
-/.gitignore
-/story.txt
+/midtermpackage/
