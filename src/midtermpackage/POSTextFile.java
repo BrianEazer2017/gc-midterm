@@ -56,9 +56,12 @@ public class POSTextFile {
         
         // ** Example of adding to the end of a file
         // Create a list with the user's food in it
-        List<String> linesToAdd = Arrays.asList(Toy.getName() + "\t" + Toy.getCategory() + "\t" + Toy.);
+        for (Toy toy : toys) {
+        List<String> linesToAdd = Arrays.asList(toy.getName() + "\t"
+        + toy.getCategory() + "\t" + toy.getPrice() + "\t" + toy.getDescription());
         // Write those lines to the end of the file
         Files.write(filePath, linesToAdd, StandardOpenOption.APPEND);
+        }
         
     }
 

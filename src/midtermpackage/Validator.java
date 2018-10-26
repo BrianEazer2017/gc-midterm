@@ -148,4 +148,17 @@ public class Validator {
 		return date;
 	}
 
+	public static long getLong(Scanner scnr, String prompt) {
+		System.out.print(prompt);
+		try {
+			long num = scnr.nextLong();
+			scnr.nextLine();
+			return num;
+		} catch (InputMismatchException e) {
+			System.out.println("Enter a whole number, using digits.");
+			scnr.nextLine();
+			return getLong(scnr, prompt);
+		}
+	}
+
 }

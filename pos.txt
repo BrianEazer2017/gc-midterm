@@ -2,11 +2,10 @@ Spiderman	Action Figure	8.76	shiny
 Black Panther	Action Figure	20.88	Cuddly
 Legend of Zelda: Breath of the Wild	Video Game	59.99	10/10-IGN
 Police Car	Cars	5.58	Shiny
-Trouble	Board Game	16.00	Hours of fun
+Trouble	Board Game	16.0	Hours of fun
 Sorry	Board Game	19.99	Fun for kids
 Ambulance	Cars	8.45	vroom vroom
-OverWatch	Video Game	50.00	gitGood
-Tetris	Video Game	15.00	hours of puzzles
-Wolverine	Action Figure	20.00	Sharp
+OverWatch	Video Game	50.0	gitGood
+Tetris	Video Game	15.0	hours of puzzles
+Wolverine	Action Figure	20.0	Sharp
 Tow Truck	Car	6.79	picks up legos
-Monopoly	Board Game	20.00	$$$$$
