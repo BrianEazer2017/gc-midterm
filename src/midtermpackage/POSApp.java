@@ -9,15 +9,14 @@ import java.util.Scanner;
 
 public class POSApp {
 
+	private static List<Toy> cart = new ArrayList<>();
+
 	public static void main(String[] args) throws IOException {
 		//Project Goals: Create POS JCB Toy Shop
 		//Midterm Project from Grand Circus by:
 		//Christa Stephens, Jacob Miller & Brian Eazer
-		
-		Toy toy = new Toy ("Awesome-O", "Action Figure" ,10.88 ,"Boss" );
 		Scanner scnr = new Scanner (System.in);
 		
-		List<Toy> cart = new ArrayList<>();
 		
 		//System.out.println(toy); testing to see if it works
 		
@@ -45,11 +44,13 @@ public class POSApp {
 		if (answer == 1) {
 			viewToys(scnr, toys);
 		}else if (answer ==2) {
-			selectToy(toys, scnr);
+			selectToy(toys, scnr, cart);
 		}else if (answer == 3) {
-			viewCart();
+			viewCart(cart, scnr);
 		}else { 
 			checkout();
+			//remem refresh cart
+			
 		}
 		
 		
@@ -68,35 +69,40 @@ public class POSApp {
 	}
 
 
-	private static void selectToy(List<Toy> toys, Scanner scnr) {
+	private static void selectToy(List<Toy> toys, Scanner scnr, List<Toy> cart) {
 		int answer = Validator.getInt(scnr, "Choose a toy by number:", 1, 12);
 		answer--;
 		Toy toy = toys.get(answer);
 		System.out.println(toy.getName()  + " " + toy.getCategory()
 		+ " " + toy.getPrice() + " " + toy.getDescription() );
 		
-		toyMenu(scnr);
+		toyMenu(scnr, toys, answer, cart);
 	}
 
 
 	
-	private static void toyMenu(Scanner scnr) {
+	private static void toyMenu(Scanner scnr, List<Toy> toys, int toyChoice, List<Toy> cart) {
 		String answer = Validator.getStringMatchingRegex(scnr, "Add to cart?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
 		if (answer.equals("yes")) { 
-			addToCart();
+			addToCart(toys.get(toyChoice), cart, scnr);
+			
+		}
+		else if (answer.equals("no")) {
+			startMenu(scnr, cart);
 		}
 		
-		
 	}
 
-	private static void addToCart() {
-		// TODO Auto-generated method stub
-		
+	private static void addToCart(Toy toy, List<Toy> cart, Scanner scnr) {
+		cart.add(toy);
+		startMenu( scnr, cart);
 	}
 
-	private static void viewCart() {
-		// TODO Auto-generated method stub
-		
+	private static void viewCart(List<Toy> cart, Scanner scnr) {
+		System.out.println("Your cart:");
+		for(Toy toy : cart) {
+			System.out.println(toy.toString());
+		}
 	}
 	
 	private static void checkout() {
