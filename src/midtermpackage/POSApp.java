@@ -84,7 +84,7 @@ public class POSApp {
 	private static void toyMenu(Scanner scnr, List<Toy> toys, int toyChoice, List<Toy> cart) {
 		String answer = Validator.getStringMatchingRegex(scnr, "Add to cart?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
 		if (answer.equals("yes")) { 
-			addToCart(toys.get(toyChoice), cart, scnr);
+			addToCart(toys.get(toyChoice), cart, scnr, toys);
 			
 		}
 		else if (answer.equals("no")) {
@@ -93,9 +93,11 @@ public class POSApp {
 		
 	}
 
-	private static void addToCart(Toy toy, List<Toy> cart, Scanner scnr) {
+	private static void addToCart(Toy toy, List<Toy> cart, Scanner scnr, List<Toy> toys) {
 		cart.add(toy);
+		POSTextFile.rewritetxtFile(toys);
 		startMenu( scnr, cart);
+		
 	}
 
 	private static void viewCart(List<Toy> cart, Scanner scnr) {
