@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 
 public class POSApp {
-
+	
+	
+	
 	private static List<Toy> cart = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
@@ -17,7 +19,7 @@ public class POSApp {
 		//Christa Stephens, Jacob Miller & Brian Eazer
 		Scanner scnr = new Scanner (System.in);
 		
-		
+		System.out.println(greet());
 		//System.out.println(toy); testing to see if it works
 		
 		
@@ -34,12 +36,14 @@ public class POSApp {
 
 	private static void startMenu(Scanner scnr, List<Toy> toys, List<Toy> cart) throws IOException {
 		
+		System.out.println("=============");
 		System.out.println("1. View list of toys: ");
 		System.out.println("2. Select a toy: ");
 		System.out.println("3. View cart: "); 
 		System.out.println("4. Checkout: ");
+		System.out.println("============");
 		
-		int answer = Validator.getInt(scnr, "Enter a choice:", 1, 4);
+		int answer = Validator.getInt(scnr, "\nEnter your choice:", 1, 4);
 		
 		if (answer == 1) {
 			viewToys(scnr, toys);
@@ -128,4 +132,10 @@ public class POSApp {
 		startMenu(scnr, toys, cart);
 	}
 
+	private static String greet() {
+		return "Welcome to JCB Toys! Where a kid can be a kid, even as an adult."
+				+ "\nFor your best shopping expierence, please select \"View list of toys\".\n"
+				+ "             ~~~~~~***************~~~~~~            "
+				+ "\n";
+	}
 }

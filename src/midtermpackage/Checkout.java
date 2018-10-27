@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Checkout {
-	private static void checkout(Scanner scnr, List<Toy> cart) {
+	static void checkout(Scanner scnr, List<Toy> cart) {
 		// If this app were to be used multiple times, it would be advantageous to use a payment class, but we assume
 		//this will only be run once.....
 		double subTotal = 0;
@@ -26,7 +26,7 @@ public class Checkout {
 		}
 		double change = amountTendered - grandTotal;
 		if (paymentMethod.startsWith("cred")) {
-			CCnum = Validator.getLong(scnr, "Enter your credit card number");
+			CCnum = Validator.getLong(scnr, "Enter your credit card number.");
 		}
 		
 	}
