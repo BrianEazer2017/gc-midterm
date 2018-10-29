@@ -23,6 +23,8 @@ public class POSTextFile {
 				toy.setCategory(parts[1]);
 				toy.setPrice(Double.parseDouble(parts[2]));
 				toy.setDescription(parts[3]);
+				toy.setInventory(Integer.parseInt(parts[4]));
+				toy.setQuantity(Integer.parseInt(parts[5]));
 				toys.add(toy);
 			}
 			return toys;
@@ -32,19 +34,19 @@ public class POSTextFile {
 		}
 	}
 	
-	static List<Toy> writeFile() throws IOException{
-		
-			if ( Files.notExists(filePath) ) {
-	            Files.createFile(filePath);
-	        }
-				
-	        // ** Example of adding to the end of a file
-	        // Create a list with the user's food in it
-	        List<String> linesToAdd = Arrays.asList(country + "\t" + population);
-	        // Write those lines to the end of the file
-	        Files.write(filePath, linesToAdd, StandardOpenOption.APPEND);
-		
-	}
+//	static List<Toy> writeFile() throws IOException{
+//		
+//			if ( Files.notExists(filePath) ) {
+//	            Files.createFile(filePath);
+//	        }
+//				
+//	        // ** Example of adding to the end of a file
+//	        // Create a list with the user's food in it
+//	        List<String> linesToAdd = Arrays.asList(country + "\t" + population);
+//	        // Write those lines to the end of the file
+//	        Files.write(filePath, linesToAdd, StandardOpenOption.APPEND);
+//		
+//	}
 	public static void rewritetxtFile(List<Toy> toys) throws IOException {
         
         if ( Files.exists(filePath) ) {
@@ -58,7 +60,7 @@ public class POSTextFile {
         // Create a list with the user's food in it
         for (Toy toy : toys) {
         List<String> linesToAdd = Arrays.asList(toy.getName() + "\t"
-        + toy.getCategory() + "\t" + toy.getPrice() + "\t" + toy.getDescription());
+        + toy.getCategory() + "\t" + toy.getPrice() + "\t" + toy.getDescription()+ "\t" + toy.getQuantity() + "\t" + toy.getInventory());
         // Write those lines to the end of the file
         Files.write(filePath, linesToAdd, StandardOpenOption.APPEND);
         }

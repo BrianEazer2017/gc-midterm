@@ -78,9 +78,21 @@ public class POSApp {
 		answer--;
 		Toy toy = toys.get(answer);
 		System.out.println(toy.getName()  + " " + toy.getCategory()
-		+ " " + toy.getPrice() + " " + toy.getDescription() );
+		+ " " + toy.getPrice() + " " + toy.getDescription() + " " + toy.getInventory() );
 		
+		if (toy.getInventory() > 0 ) {
 		toyMenu(scnr, toys, answer, cart);
+		}
+		else if (toy.getInventory() == 0) {
+			String answer1 = Validator.getStringMatchingRegex(scnr,
+					toy.getName() + " is out of stock.\n Would you like to put this on back-order?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
+			if (answer1.matches("[Yy]+[eE]*[sS]*")) {
+				int backOrderQuant = Validator.getInt(scnr, "How many would you like to put on back-order", 1, 10);
+				toy.setInventory(backOrderQuant);
+				System.out.println("Back order added to inventory!");
+				startMenu(scnr, toys, cart);
+			}
+		}
 	}
 
 
@@ -88,6 +100,7 @@ public class POSApp {
 	private static void toyMenu(Scanner scnr, List<Toy> toys, int toyChoice, List<Toy> cart) throws IOException {
 		String answer = Validator.getStringMatchingRegex(scnr, "Add to cart?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
 		if (answer.matches("[Yy]+[eE]*[sS]*")) { 
+			
 			addToCart(toys.get(toyChoice), cart, scnr, toys);
 			
 		}
@@ -98,8 +111,10 @@ public class POSApp {
 	}
 
 	private static void addToCart(Toy toy, List<Toy> cart, Scanner scnr, List<Toy> toys) throws IOException {
+		int userQuantity = Validator.getInt(scnr, "How many would you like to add to cart?", 1, toy.getInventory());
+		toy.setQuantity(toy.getQuantity() + userQuantity);
+		toy.setInventory(toy.getInventory() - userQuantity);
 		cart.add(toy);
-		toys.remove(toy);
 		
 		POSTextFile.rewritetxtFile(toys);
 		startMenu( scnr, toys, cart);

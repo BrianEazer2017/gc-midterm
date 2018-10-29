@@ -1,10 +1,11 @@
-Spider-Man	Action Figure	8.76	Shiny
-Legend of Zelda: Breath of the Wild	Video Game	59.99	10/10-IGN
-Police Car	Cars	5.58	Shiny
-Trouble	Board Game	16.99	Hours of fun
-Sorry	Board Game	19.99	Fun for kids
-Ambulance	Cars	8.45	Vroom vroom
-OverWatch	Video Game	59.99	Kinda Halo
-Tetris	Video Game	15.88	Hours of puzzles
-Wolverine	Action Figure	6.38	Sharp
-Dr. Strange	Stuffed Animal	22.88	Nice hair
+Spider-Man	Action Figure	8.76	Shiny	0	4
+Black Panther	Stuffed Animal	20.88	Cuddly	0	4
+Police Car	Cars	5.58	Shiny	0	5
+Trouble	Board Game	16.99	Hours of fun	6	3
+Sorry	Board Game	19.99	Fun for kids	0	2
+Ambulance	Cars	8.45	Vroom vroom	0	3
+OverWatch	Video Game	59.99	Kinda Halo	0	9
+Tetris	Video Game	15.88	Hours of puzzles	0	4
+Wolverine	Action Figure	6.38	Sharp	0	7
+Dr. Strange	Stuffed Animal	22.88	Nice hair	0	11
+Monopoly	Board Game	19.99	$$$$$	0	6

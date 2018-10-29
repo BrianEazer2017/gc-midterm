@@ -8,6 +8,6 @@ Sorry	Board Game	19.99	Fun for kids
 Ambulance	Cars	8.45	Vroom vroom
 OverWatch	Video Game	59.99	Kinda Halo
 Tetris	Video Game	15.88	Hours of puzzles
-Wolverine	Action Figure	6.38    Sharp
+Wolverine	Action Figure	6.38	Sharp
 Dr. Strange	Stuffed Animal	22.88	Nice hair
 Monopoly	Board Game	19.99	$$$$$

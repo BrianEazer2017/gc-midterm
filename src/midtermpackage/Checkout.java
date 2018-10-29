@@ -11,7 +11,7 @@ public class Checkout {
 		DecimalFormat df = new DecimalFormat("###.##");
 		double subTotal = 0;
 		for (Toy toy : cart) {
-			subTotal += toy.getPrice();
+			subTotal += toy.getPrice() * toy.getQuantity();
 		}
 		double tax = subTotal * .06;
 		double grandTotal = subTotal + tax;
@@ -36,15 +36,18 @@ public class Checkout {
 		}
 		
 		if (paymentMethod.startsWith("che")) {
-			getCheckDetails(grandTotal, scnr, tax, subTotal, cart, change, df);
+			getCheckDetails(grandTotal, scnr, tax, subTotal, cart, change, df, amountTendered);
 		}
 		
 	}
 	 private static void getCheckDetails(double grandTotal, Scanner scnr, double tax, double subTotal, List<Toy> cart,
-			double change, DecimalFormat df) {
-		// TODO Auto-generated method stub
+			double change, DecimalFormat df, double amountTendered) {
+		
+		 String checkNumber = Validator.getStringMatchingRegex(scnr, "Enter your account number", "[1-3][0-9]{8}");
+		 printReceipt(grandTotal, scnr, tax, subTotal, cart, amountTendered, df);
 		
 	}
+	 
 	private static void getCCDetails(double grandTotal, Scanner scnr, double tax, double subTotal, List<Toy> cart,
 			double amountTendered, DecimalFormat df) {
 		    
@@ -72,6 +75,7 @@ public class Checkout {
 	 }
 	 
 	 public static void printReceipt(Double total, Scanner scnr, Double tax, Double subTotal, List<Toy> cart, Double amountTendered, DecimalFormat df) {
-		 
+		 System.out.println("Thank you for shopping at JCB Toy's");
+		 System.out.printf("%-15s","%-15s","%-15s", "Name", "Quantity", "Price" );
 	 	}
 	 }
