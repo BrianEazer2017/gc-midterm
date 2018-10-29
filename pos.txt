@@ -1,5 +1,4 @@
 Spider-Man	Action Figure	8.76	Shiny
-Black Panther	Stuffed Animal	20.88	Cuddly
 Legend of Zelda: Breath of the Wild	Video Game	59.99	10/10-IGN
 Police Car	Cars	5.58	Shiny
 Trouble	Board Game	16.99	Hours of fun
@@ -9,4 +8,3 @@ OverWatch	Video Game	59.99	Kinda Halo
 Tetris	Video Game	15.88	Hours of puzzles
 Wolverine	Action Figure	6.38	Sharp
 Dr. Strange	Stuffed Animal	22.88	Nice hair
-Monopoly	Board Game	19.99	$$$$$
