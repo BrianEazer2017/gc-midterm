@@ -46,6 +46,7 @@ public class Checkout {
 			double change, DecimalFormat df, double amountTendered, List<Toy> toys) throws IOException {
 		
 		 String checkNumber = Validator.getStringMatchingRegex(scnr, "Enter your account number", "[1-3][0-9]{8}");
+		 String name = Validator.getStringMatchingRegex(scnr, "Enter your name as it appears on the check:", "[a-zA-Z]+ [a-zA-Z]+");
 		 printReceipt(grandTotal, scnr, tax, subTotal, cart, amountTendered, df, toys);
 		
 	}

@@ -35,7 +35,7 @@ public class POSApp {
 		List<Toy> toys = POSTextFile.readFile();
 		for (Toy toy: toys) {
 			toy.setQuantity(0);
-		}
+	}
 		
 		//System.out.println(POSTextFile.readFile());
 		startMenu(scnr, toys, cart);
@@ -76,7 +76,7 @@ public class POSApp {
 			count++;
 	
 		}
-		startMenu(scnr, toys, cart);
+		selectToy(toys, scnr, cart);
 	}
 
 
@@ -84,9 +84,10 @@ public class POSApp {
 		int answer = Validator.getInt(scnr, "Choose a toy by number:", 1, toys.size());
 		answer--;
 		Toy toy = toys.get(answer);
-		System.out.println(toy.getName()  + " " + toy.getCategory()
-		+ " " + toy.getPrice() + " " + toy.getDescription() + " " + toy.getInventory() );
-		
+		System.out.println("===============");
+		System.out.println("Name: " + toy.getName() + ", Category: " + toy.getCategory() 
+		+ ", Price: $" + toy.getPrice()+ ", Description: " + toy.getDescription()+ ", Amount in stock: " + toy.getInventory());
+		System.out.println("===============");
 		if (toy.getInventory() > 0 ) {
 		toyMenu(scnr, toys, answer, cart);
 		}
@@ -97,7 +98,15 @@ public class POSApp {
 			if (answer1.matches("[Yy]+[eE]*[sS]*")) {
 				int backOrderQuant = Validator.getInt(scnr, "How many would you like to put on back-order", 1, 10);
 				toy.setInventory(backOrderQuant);
+				Toy cloneToy = toy;
+				toys.remove(toy);
+				cloneToy.setInventory(backOrderQuant);
+				toys.add(cloneToy);
+				POSTextFile.rewritetxtFile(toys);
 				System.out.println("Back order added to inventory!");
+				startMenu(scnr, toys, cart);
+			}
+			else {
 				startMenu(scnr, toys, cart);
 			}
 		}
@@ -122,6 +131,11 @@ public class POSApp {
 		int userQuantity = Validator.getInt(scnr, "How many would you like to add to cart?", 1, toy.getInventory());
 		toy.setQuantity(toy.getQuantity() + userQuantity);
 		toy.setInventory(toy.getInventory() - userQuantity);
+		for(Toy t : cart) {
+			if (t.getName().equals(toy.getName())){
+				startMenu( scnr, toys, cart);
+			}
+		}
 		cart.add(toy);
 		
 		POSTextFile.rewritetxtFile(toys);
@@ -131,11 +145,17 @@ public class POSApp {
 
 	private static void viewCart(Scanner scnr, List<Toy> toys, List<Toy> cart) throws IOException {
 		System.out.println("Your cart:");
-		int counter = 1;
+		System.out.printf("%-15s%-15s%-15s", "================", "================", "================");
+		System.out.println("");
+		System.out.printf("%-15s%-15s%-15s", "Quantity", "Name", "Price");
+		System.out.println("");
 		for(Toy toy : cart) {
-			System.out.println(counter + ". " + toy.toString());
-			counter++;
+			System.out.printf("%-15s%-15s%-15s", toy.getQuantity(), toy.getName(),"$"+ toy.getPrice());
+			System.out.println("");
 		}
+		System.out.println("");
+		System.out.printf("%-15s%-15s%-15s", "================", "================", "================");
+		System.out.println("");
 		if (cart.size() > 0) {
 		askToRemove(scnr, toys, cart);
 		} else {

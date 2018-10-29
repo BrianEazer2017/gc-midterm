@@ -61,7 +61,7 @@ public class POSTextFile {
         for (Toy toy : toys) {
         List<String> linesToAdd = Arrays.asList(toy.getName() + "\t"
         + toy.getCategory() + "\t" + toy.getPrice() + "\t" +
-        		toy.getDescription()+ "\t" + toy.getQuantity() + "\t" + toy.getInventory());
+        		toy.getDescription()+ "\t" + toy.getInventory() + "\t");
         // Write those lines to the end of the file
         Files.write(filePath, linesToAdd, StandardOpenOption.APPEND);
         }

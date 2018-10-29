@@ -73,8 +73,7 @@ public class Toy {
 
 	@Override
 	public String toString() {
-		return "Toy [name=" + name + ", category=" + category + ", price=" + price + ", description=" + description
-				+ ", quantity" + quantity + "]";
+		return  getQuantity()  + "      " +getName() + "         " + getPrice();
 	}
 
 }
