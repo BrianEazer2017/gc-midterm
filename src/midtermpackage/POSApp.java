@@ -42,7 +42,6 @@ public class POSApp {
 	}
 
 	static void startMenu(Scanner scnr, List<Toy> toys, List<Toy> cart) throws IOException {
-		
 		System.out.println("=============");
 		System.out.println("1. View list of toys: ");
 		System.out.println("2. Select a toy: ");
@@ -58,12 +57,15 @@ public class POSApp {
 			selectToy(toys, scnr, cart);
 		}else if (answer == 3) {
 			viewCart(scnr, toys, cart);
-		}else { 
-			Checkout.checkout(scnr, cart, toys);
-			
-			
-		}
-		
+		}else if (answer == 4){ 
+			if (cart.size() > 0) {
+				Checkout.checkout(scnr, cart, toys);
+			} else {
+			System.out.println("Your cart is empty.");
+			System.out.println("");
+			startMenu(scnr, toys, cart);
+			}
+		}		
 		
 	}
 

@@ -26,24 +26,36 @@ public class Checkout {
 		String checkNum = "";
 		// df.format(doubleToBeFormatted) formats a double in a print statement
 		System.out.println("Your total is $" + df.format(grandTotal) );
+		String[] coupons = {"GCISCOOL20", "JCB20", "HIDAVID20"};
+		boolean hasCoupon = false;
+		double couponTotal = grandTotal*.2;
+		String getCoupons = Validator.getStringMatchingRegex(scnr, "Do you have any JCB coupons?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
+		if (getCoupons.matches("[Yy]+[eE]*[sS]*")){
+			String enterCoupon = Validator.getStringMatchingRegex(scnr, "Enter Coupon", "[A-Z0-9]+");
+			for (String c: coupons) {
+				if (c.equals(enterCoupon)) {
+					hasCoupon = true;
+				}
+			}
+		}
 		String paymentMethod = Validator.getString(scnr, "Payment type: Cash, credit or check?").toLowerCase();
 		if (paymentMethod.startsWith("cas")) {
 			amountTendered = Validator.getDouble(scnr, "Input cash amount:");
-			countCash(grandTotal, amountTendered, scnr, tax, subTotal, cart, df, toys);
+			countCash(grandTotal, amountTendered, scnr, tax, subTotal, cart, df, toys, hasCoupon, couponTotal);
 		}
 		
 		double change = amountTendered - grandTotal;
 		if (paymentMethod.startsWith("cre")) {
-			getCCDetails(grandTotal, scnr, tax, subTotal, cart, change, df, toys);
+			getCCDetails(grandTotal, scnr, tax, subTotal, cart, change, df, toys, hasCoupon, couponTotal);
 		}
 		
 		if (paymentMethod.startsWith("che")) {
-			getCheckDetails(grandTotal, scnr, tax, subTotal, cart, change, df, amountTendered, toys);
+			getCheckDetails(grandTotal, scnr, tax, subTotal, cart, change, df, amountTendered, toys, hasCoupon, couponTotal);
 		}
 		
 	}
 	 private static void getCheckDetails(double grandTotal, Scanner scnr, double tax, double subTotal, List<Toy> cart,
-			double change, DecimalFormat df, double amountTendered, List<Toy> toys) throws IOException {
+			double change, DecimalFormat df, double amountTendered, List<Toy> toys, boolean hasCoupon, double couponTotal) throws IOException {
 		
 		 String checkNumber = Validator.getStringMatchingRegex(scnr, "Enter your account number", "[1-3][0-9]{8}");
 		 String name = Validator.getStringMatchingRegex(scnr, "Enter your name as it appears on the check:", "[a-zA-Z]+ [a-zA-Z]+");
@@ -52,7 +64,7 @@ public class Checkout {
 	}
 	 
 	private static void getCCDetails(double grandTotal, Scanner scnr, double tax, double subTotal, List<Toy> cart,
-			double amountTendered, DecimalFormat df, List<Toy> toys) throws IOException {
+			double amountTendered, DecimalFormat df, List<Toy> toys, boolean hasCoupon, double couponTotal) throws IOException {
 		    
 		 	String name = Validator.getStringMatchingRegex(scnr, "Enter name as it appears on your card:", "[a-zA-Z]+ [a-zA-Z]+");
 		 	String CCnum = Validator.getStringMatchingRegex(scnr,
@@ -62,25 +74,29 @@ public class Checkout {
 			 printReceipt(grandTotal, scnr, tax, subTotal, cart, amountTendered, df, toys);
 		
 	}
-	public static void countCash(double total, double cash, Scanner scnr, double tax, double subTotal, List<Toy> cart, DecimalFormat df, List<Toy> toys) throws IOException {
+	public static void countCash(double total, double cash, Scanner scnr, double tax, double subTotal, List<Toy> cart, DecimalFormat df, List<Toy> toys,
+			boolean hasCoupon, double couponTotal) throws IOException {
 		    if (Math.abs(total-cash) < 0.009) {
 	            System.out.println("Perfect change!"); 
-	            printReceipt(total, scnr, tax, subTotal, cart, cash, df, toys);
+	            printReceipt(total, scnr, tax, subTotal, cart, cash, df, toys, hasCoupon, couponTotal);
 	        }
 		    else if (total > cash) {
 	            total -= cash;
 	            double newCash = Validator.getDouble(scnr, "You still owe " + df.format(total) + ". How would you like to pay for the remainder?");
-	            countCash(total, newCash, scnr, newCash, newCash, cart, df, toys);
+	            countCash(total, newCash, scnr, newCash, newCash, cart, df, toys, hasCoupon, newCash);
 	            
 	        }  else if (total < cash) {
 	        	double change = cash-total;
 	            System.out.println("Thank you! Your change is $" + df.format(change));
-	            printReceipt(total, scnr, tax, subTotal, cart, cash, df, toys);
+	            printReceipt(total, scnr, tax, subTotal, cart, cash, df, toys, hasCoupon, change);
 	        } 
 	 }
 	 
 	 public static void printReceipt(Double total, Scanner scnr, 
-			 Double tax, Double subTotal, List<Toy> cart, Double amountTendered, DecimalFormat df, List<Toy> toys) throws IOException {
+			 Double tax, Double subTotal, List<Toy> cart, Double amountTendered, DecimalFormat df, List<Toy> toys, boolean hasCoupon, double couponTotal) throws IOException {
+		 if (hasCoupon) {
+		 total = total - couponTotal;
+		 }
 		 System.out.println("");
 		 System.out.println("Thank you for shopping at JCB Toy's.");
 		 System.out.printf("%-15s%-15s%-15s%-15s", "Quantity","Name", "Price", "Price Per Item");
@@ -95,7 +111,10 @@ public class Checkout {
 		 System.out.println("Subtotal " + df.format(subTotal));
 		 System.out.println("Taxes " + df.format(tax));
 		 System.out.println("Total "+ df.format(total));
-		 
+		 if(hasCoupon) {
+			 System.out.println("Your coupon saved you " + couponTotal);
+		 }
+		 System.out.println("Thanks for shopping at JCB Toy Store!");
 		 shopAgain(cart, scnr, toys);
 	 	}
 	private static void shopAgain(List<Toy> cart, Scanner scnr, List<Toy> toys) throws IOException {
