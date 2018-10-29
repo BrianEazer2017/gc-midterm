@@ -24,7 +24,7 @@ public class POSTextFile {
 				toy.setPrice(Double.parseDouble(parts[2]));
 				toy.setDescription(parts[3]);
 				toy.setInventory(Integer.parseInt(parts[4]));
-				toy.setQuantity(Integer.parseInt(parts[5]));
+//				toy.setQuantity(Integer.parseInt(parts[5]));
 				toys.add(toy);
 			}
 			return toys;
@@ -60,7 +60,8 @@ public class POSTextFile {
         // Create a list with the user's food in it
         for (Toy toy : toys) {
         List<String> linesToAdd = Arrays.asList(toy.getName() + "\t"
-        + toy.getCategory() + "\t" + toy.getPrice() + "\t" + toy.getDescription()+ "\t" + toy.getQuantity() + "\t" + toy.getInventory());
+        + toy.getCategory() + "\t" + toy.getPrice() + "\t" +
+        		toy.getDescription()+ "\t" + toy.getQuantity() + "\t" + toy.getInventory());
         // Write those lines to the end of the file
         Files.write(filePath, linesToAdd, StandardOpenOption.APPEND);
         }

@@ -1,13 +1,13 @@
 Backup toy file created 10/27/18- has tabs
-Spider-Man	Action Figure	8.76	Shiny
-Black Panther	Stuffed Animal	20.88	Cuddly
-Legend of Zelda: Breath of the Wild	Video Game	59.99	10/10-IGN
-Police Car	Cars	5.58	Shiny
-Trouble	Board Game	16.99	Hours of fun
-Sorry	Board Game	19.99	Fun for kids
-Ambulance	Cars	8.45	Vroom vroom
-OverWatch	Video Game	59.99	Kinda Halo
-Tetris	Video Game	15.88	Hours of puzzles
-Wolverine	Action Figure	6.38	Sharp
-Dr. Strange	Stuffed Animal	22.88	Nice hair
-Monopoly	Board Game	19.99	$$$$$
+Spider-Man	Action Figure	8.76	Shiny	8	0
+Black Panther	Stuffed Animal	20.88	Cuddly	4	0
+Legend of Zelda: Breath of the Wild	Video Game	59.99	10/10-IGN	3	0
+Police Car	Cars	5.58	Shiny	2	0
+Trouble	Board Game	16.99	Hours of fun	4	0
+Sorry	Board Game	19.99	Fun for kids	6	0
+Ambulance	Cars	8.45	Vroom vroom	5	0
+OverWatch	Video Game	59.99	Kinda Halo	5	0
+Tetris	Video Game	15.88	Hours of puzzles	2	0
+Wolverine	Action Figure	6.38	Sharp	4	0
+Dr. Strange	Stuffed Animal	22.88	Nice hair	4	0
+Monopoly	Board Game	19.99	$$$$$	6	0

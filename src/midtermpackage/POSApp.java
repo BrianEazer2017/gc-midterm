@@ -19,6 +19,9 @@ public class POSApp {
 		//Christa Stephens, Jacob Miller & Brian Eazer
 		Scanner scnr = new Scanner (System.in);
 		
+		
+
+		
 		System.out.println(greet());
 		//System.out.println(toy); testing to see if it works
 		
@@ -28,13 +31,17 @@ public class POSApp {
 		// int choice = Validator.getInt(scnr, "Enter the toy by number.", 1, 12);
 		
 		//System.out.println(choice); //testing to see if it works
+		
 		List<Toy> toys = POSTextFile.readFile();
+		for (Toy toy: toys) {
+			toy.setQuantity(0);
+		}
 		
 		//System.out.println(POSTextFile.readFile());
 		startMenu(scnr, toys, cart);
 	}
 
-	private static void startMenu(Scanner scnr, List<Toy> toys, List<Toy> cart) throws IOException {
+	static void startMenu(Scanner scnr, List<Toy> toys, List<Toy> cart) throws IOException {
 		
 		System.out.println("=============");
 		System.out.println("1. View list of toys: ");
@@ -52,8 +59,8 @@ public class POSApp {
 		}else if (answer == 3) {
 			viewCart(scnr, toys, cart);
 		}else { 
-			Checkout.checkout(scnr, cart);
-			//remem refresh cart
+			Checkout.checkout(scnr, cart, toys);
+			
 			
 		}
 		
@@ -85,7 +92,8 @@ public class POSApp {
 		}
 		else if (toy.getInventory() == 0) {
 			String answer1 = Validator.getStringMatchingRegex(scnr,
-					toy.getName() + " is out of stock.\n Would you like to put this on back-order?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
+					toy.getName() + " is out of stock.\n Would you like to put this on back-order?",
+					"[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
 			if (answer1.matches("[Yy]+[eE]*[sS]*")) {
 				int backOrderQuant = Validator.getInt(scnr, "How many would you like to put on back-order", 1, 10);
 				toy.setInventory(backOrderQuant);
