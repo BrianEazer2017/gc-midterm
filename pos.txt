@@ -1,12 +1,12 @@
 Police Car	Cars	5.58	Shiny	3	
-OverWatch	Video Game	59.99	Kinda Halo	5	
-Black Panther	Stuffed Animal	20.88	Cuddly	7	
+Black Panther	Stuffed Animal	20.88	Cuddly	6	
 Wolverine	Action Figure	6.38	Sharp	2	
 Sorry	Board Game	19.99	Fun for kids	7	
 Trouble	Board Game	16.99	Hours of fun	5	
 Ambulance	Cars	8.45	Vroom vroom	4	
-Tetris	Video Game	15.88	Hours of puzzles	7	
+Tetris	Video Game	15.88	Hours of puzzles	5	
 Dr. Strange	Stuffed Animal	22.88	Nice hair	12	
-Spider-Man	Action Figure	8.76	Shiny	4	
+Spider-Man	Action Figure	8.76	Shiny	3	
 Zelda	Video Game	59.99	10/10-IGN	5	
 Monopoly	Board Game	19.99	$$$$$	3	
+OverWatch	Video Game	59.99	Kinda Halo	4	

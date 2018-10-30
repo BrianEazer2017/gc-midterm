@@ -28,7 +28,7 @@ public class Checkout {
 		System.out.println("Your total is $" + df.format(grandTotal) );
 		String[] coupons = {"GCISCOOL20", "JCB20", "HIDAVID20"};
 		boolean hasCoupon = false;
-		double couponTotal = grandTotal*.2;
+		Double couponTotal = grandTotal*.2;
 		String getCoupons = Validator.getStringMatchingRegex(scnr, "Do you have any JCB coupons?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
 		if (getCoupons.matches("[Yy]+[eE]*[sS]*")){
 			String enterCoupon = Validator.getStringMatchingRegex(scnr, "Enter Coupon", "[A-Z0-9]+");
@@ -37,6 +37,10 @@ public class Checkout {
 					hasCoupon = true;
 				}
 			}
+		}
+		if (hasCoupon == true) {
+			grandTotal -= couponTotal;
+			System.out.println("Your discounted total is " + df.format(grandTotal) + ".");
 		}
 		String paymentMethod = Validator.getString(scnr, "Payment type: Cash, credit or check?").toLowerCase();
 		if (paymentMethod.startsWith("cas")) {
@@ -90,15 +94,12 @@ public class Checkout {
 	        }  else if (total < cash) {
 	        	double change = cash-total;
 	            System.out.println("Thank you! Your change is $" + df.format(change));
-	            printReceipt(total, scnr, tax, subTotal, cart, cash, df, toys, hasCoupon, change);
+	            printReceipt(total, scnr, tax, subTotal, cart, cash, df, toys, hasCoupon, couponTotal);
 	        } 
 	 }
 	 
 	 public static void printReceipt(Double total, Scanner scnr, 
 			 Double tax, Double subTotal, List<Toy> cart, Double amountTendered, DecimalFormat df, List<Toy> toys, boolean hasCoupon, double couponTotal) throws IOException {
-		 if (hasCoupon) {
-		 total = total - couponTotal;
-		 }
 		 System.out.println("");
 		 System.out.println("Thank you for shopping at JCB Toy's.");
 		 System.out.printf("%-15s%-15s%-15s%-15s", "Quantity","Name", "Price", "Price Per Item");
