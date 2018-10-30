@@ -10,7 +10,7 @@ public class Checkout {
 	static void checkout(Scanner scnr, List<Toy> cart, List<Toy> toys) throws IOException {
 		// If this app were to be used multiple times, it would be advantageous to use a payment class, but we assume
 		//this will only be run once.....
-		DecimalFormat df = new DecimalFormat("###.##");
+		DecimalFormat df = new DecimalFormat("###.00");
 		double subTotal = 0;
 		for (Toy toy : cart) {
 			subTotal += toy.getPrice() * toy.getQuantity();

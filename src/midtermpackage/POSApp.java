@@ -171,7 +171,13 @@ public class POSApp {
 		if (answer.matches("[Yy]+[eE]*[sS]*")) {
 			int itemIndex = Validator.getInt(scnr, "What item number would you like to remove from the cart?", 1, cart.size());
 			itemIndex--;
+			Toy toy = cart.get(itemIndex);
+			int userQuantity = Validator.getInt(scnr, "How many would you like to remove from cart?", 1, toy.getQuantity());
+			toys.remove(toy);
+			toy.setInventory(userQuantity);
+			toys.add(toy);
 			cart.remove(itemIndex);
+			POSTextFile.rewritetxtFile(toys);
 		}
 		
 		startMenu(scnr, toys, cart);
