@@ -8,37 +8,37 @@ import java.util.Scanner;
 
 
 public class POSApp {
-	
-	
-	
-	private static List<Toy> cart = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
-		//Project Goals: Create POS JCB Toy Shop
-		//Midterm Project from Grand Circus by:
-		//Christa Stephens, Jacob Miller & Brian Eazer
-		Scanner scnr = new Scanner (System.in);
-		
-		
-
-		
-		System.out.println(greet());
-		//System.out.println(toy); testing to see if it works
-		
-		
-		//validator - replace prompt to what we want to output to user
-		//then min & max is the amount we have in list
-		// int choice = Validator.getInt(scnr, "Enter the toy by number.", 1, 12);
-		
-		//System.out.println(choice); //testing to see if it works
-		
-		List<Toy> toys = POSTextFile.readFile();
-		for (Toy toy: toys) {
-			toy.setQuantity(0);
+		initialize();
 	}
-		
-		//System.out.println(POSTextFile.readFile());
-		startMenu(scnr, toys, cart);
+
+	public static void initialize() throws IOException {
+		//Project Goals: Create POS JCB Toy Shop
+				//Midterm Project from Grand Circus by:
+				//Christa Stephens, Jacob Miller & Brian Eazer
+				Scanner scnr = new Scanner (System.in);
+				
+				
+
+				
+				System.out.println(greet());
+				//System.out.println(toy); testing to see if it works
+				
+				
+				//validator - replace prompt to what we want to output to user
+				//then min & max is the amount we have in list
+				// int choice = Validator.getInt(scnr, "Enter the toy by number.", 1, 12);
+				
+				//System.out.println(choice); //testing to see if it works
+				List<Toy> toys = POSTextFile.readFile();
+				List<Toy> cart = new ArrayList<>();
+				for (Toy toy: toys) {
+					toy.setQuantity(0);
+			}
+				
+				//System.out.println(POSTextFile.readFile());
+				startMenu(scnr, toys, cart);
 	}
 
 	static void startMenu(Scanner scnr, List<Toy> toys, List<Toy> cart) throws IOException {
@@ -52,7 +52,7 @@ public class POSApp {
 		int answer = Validator.getInt(scnr, "\nEnter your choice:", 1, 4);
 		
 		if (answer == 1) {
-			viewToys(scnr, toys);
+			viewToys(scnr, toys, cart);
 		}else if (answer ==2) {
 			selectToy(toys, scnr, cart);
 		}else if (answer == 3) {
@@ -70,7 +70,7 @@ public class POSApp {
 	}
 
 
-	private static void viewToys(Scanner scnr, List<Toy> toys) throws IOException {
+	private static void viewToys(Scanner scnr, List<Toy> toys, List<Toy> cart) throws IOException {
 		int count = 1;
 		for (Toy t : toys) {
 
@@ -177,7 +177,8 @@ public class POSApp {
 			toys.remove(toy);
 			if (userQuantity == toy.getQuantity()) {
 			cart.remove(toy);
-			toy.setInventory(userQuantity);
+			toy.setInventory(userQuantity + toy.getInventory());
+			toy.setQuantity(0);
 			toys.add(toy);
 			} else if (userQuantity != toy.getQuantity()) {
 				toy.setInventory(toy.getInventory()+userQuantity);

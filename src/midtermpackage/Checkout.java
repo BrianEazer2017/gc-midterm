@@ -51,6 +51,8 @@ public class Checkout {
 		
 		if (paymentMethod.startsWith("che")) {
 			getCheckDetails(grandTotal, scnr, tax, subTotal, cart, change, df, amountTendered, toys, hasCoupon, couponTotal);
+		} else {
+			checkout(scnr, cart, toys);
 		}
 		
 	}
@@ -120,14 +122,10 @@ public class Checkout {
 	private static void shopAgain(List<Toy> cart, Scanner scnr, List<Toy> toys) throws IOException {
 		String answer = Validator.getStringMatchingRegex(scnr, 
 				"Would you like to shop again?", "[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
-//		for (Toy toy: cart) {
-//			cart.remove(toy);
-//		}
 		
-		 cart = new ArrayList<>();
 		if (answer.matches("[Yy]+[eE]*[sS]*")) {
 			
-			POSApp.startMenu(scnr, toys, cart);
+			POSApp.initialize();
 			
 		}
 	}
