@@ -155,6 +155,7 @@ public class POSApp {
 		for(Toy toy : cart) {
 			System.out.printf("%-15s%-15s%-15s", counter + ". " + toy.getQuantity(), toy.getName(),"$"+ toy.getPrice());
 			System.out.println("");
+			counter++;
 		}
 		System.out.printf("%-15s%-15s%-15s", "================", "================", "================");
 		System.out.println("");
@@ -174,9 +175,15 @@ public class POSApp {
 			Toy toy = cart.get(itemIndex);
 			int userQuantity = Validator.getInt(scnr, "How many would you like to remove from cart?", 1, toy.getQuantity());
 			toys.remove(toy);
+			if (userQuantity == toy.getQuantity()) {
+			cart.remove(toy);
 			toy.setInventory(userQuantity);
 			toys.add(toy);
-			cart.remove(itemIndex);
+			} else if (userQuantity != toy.getQuantity()) {
+				toy.setInventory(toy.getInventory()+userQuantity);
+				toys.add(toy);
+				cart.get(itemIndex).setQuantity(toy.getQuantity()-userQuantity);
+			}
 			POSTextFile.rewritetxtFile(toys);
 		}
 		
