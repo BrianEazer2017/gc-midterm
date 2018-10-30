@@ -59,7 +59,7 @@ public class Checkout {
 		
 		 String checkNumber = Validator.getStringMatchingRegex(scnr, "Enter your account number", "[1-3][0-9]{8}");
 		 String name = Validator.getStringMatchingRegex(scnr, "Enter your name as it appears on the check:", "[a-zA-Z]+ [a-zA-Z]+");
-		 printReceipt(grandTotal, scnr, tax, subTotal, cart, amountTendered, df, toys);
+		 printReceipt(grandTotal, scnr, tax, subTotal, cart, amountTendered, df, toys, hasCoupon, couponTotal);
 		
 	}
 	 
@@ -71,7 +71,7 @@ public class Checkout {
 		 	"Enter your credit card number. Use the following format: XXXX-XXXX-XXXX-XXXX", "\\d{4}-\\d{4}-\\d{4}-\\d{4}");
 		    String expDate = Validator.getStringMatchingRegex(scnr, "Enter the expiration date in the following format: MM/YY.", "(0[1-9]|10|11|12)/[0-9]{2}$");
 			String CVV = Validator.getStringMatchingRegex(scnr, "Enter the CVV number:", "\\d{3}");
-			 printReceipt(grandTotal, scnr, tax, subTotal, cart, amountTendered, df, toys);
+			 printReceipt(grandTotal, scnr, tax, subTotal, cart, amountTendered, df, toys, hasCoupon, couponTotal);
 		
 	}
 	public static void countCash(double total, double cash, Scanner scnr, double tax, double subTotal, List<Toy> cart, DecimalFormat df, List<Toy> toys,
@@ -112,7 +112,7 @@ public class Checkout {
 		 System.out.println("Taxes " + df.format(tax));
 		 System.out.println("Total "+ df.format(total));
 		 if(hasCoupon) {
-			 System.out.println("Your coupon saved you " + couponTotal);
+			 System.out.println("Your coupon saved you " + df.format(couponTotal));
 		 }
 		 System.out.println("Thanks for shopping at JCB Toy Store!");
 		 shopAgain(cart, scnr, toys);
@@ -126,8 +126,7 @@ public class Checkout {
 		
 		 cart = new ArrayList<>();
 		if (answer.matches("[Yy]+[eE]*[sS]*")) {
-			System.out.println(toys);
-			System.out.println(cart);
+			
 			POSApp.startMenu(scnr, toys, cart);
 			
 		}

@@ -98,7 +98,7 @@ public class POSApp {
 					toy.getName() + " is out of stock.\n Would you like to put this on back-order?",
 					"[Yy]+[eE]*[sS]*|[Nn]+[oO]*");
 			if (answer1.matches("[Yy]+[eE]*[sS]*")) {
-				int backOrderQuant = Validator.getInt(scnr, "How many would you like to put on back-order", 1, 10);
+				int backOrderQuant = Validator.getInt(scnr, "How many would you like to put on back-order?", 1, 10);
 				toy.setInventory(backOrderQuant);
 				Toy cloneToy = toy;
 				toys.remove(toy);
@@ -151,11 +151,11 @@ public class POSApp {
 		System.out.println("");
 		System.out.printf("%-15s%-15s%-15s", "Quantity", "Name", "Price");
 		System.out.println("");
+		int counter = 1;
 		for(Toy toy : cart) {
-			System.out.printf("%-15s%-15s%-15s", toy.getQuantity(), toy.getName(),"$"+ toy.getPrice());
+			System.out.printf("%-15s%-15s%-15s", counter + ". " + toy.getQuantity(), toy.getName(),"$"+ toy.getPrice());
 			System.out.println("");
 		}
-		System.out.println("");
 		System.out.printf("%-15s%-15s%-15s", "================", "================", "================");
 		System.out.println("");
 		if (cart.size() > 0) {
